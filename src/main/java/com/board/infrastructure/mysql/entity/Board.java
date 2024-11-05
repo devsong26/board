@@ -8,7 +8,7 @@ import jakarta.persistence.Version;
 public class Board {
 
     @Id
-    private String id;
+    private Long id;
     private String title;
 
     @Version
