@@ -1,4 +1,4 @@
-package com.board.infrastructure;
+package com.board.infrastructure.web;
 
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import lombok.RequiredArgsConstructor;

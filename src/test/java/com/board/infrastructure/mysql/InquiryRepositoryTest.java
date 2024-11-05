@@ -1,6 +1,6 @@
 package com.board.infrastructure.mysql;
 
-import com.board.domain.Inquiry;
+import com.board.infrastructure.mysql.entity.Inquiry;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

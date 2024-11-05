@@ -1,4 +1,4 @@
-package com.board.domain;
+package com.board.infrastructure.mysql.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;

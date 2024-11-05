@@ -1,6 +1,6 @@
 package com.board.infrastructure.mysql;
 
-import com.board.domain.Inquiry;
+import com.board.infrastructure.mysql.entity.Inquiry;
 import com.board.domain.QInquiry;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import jakarta.persistence.EntityManager;

@@ -1,5 +1,6 @@
 package com.board.infrastructure;
 
+import com.board.infrastructure.web.MembershipClient;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
