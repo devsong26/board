@@ -1,4 +1,4 @@
-package com.board.application.config;
+package com.board.config;
 
 import io.github.resilience4j.circuitbreaker.CircuitBreaker;
 import io.github.resilience4j.circuitbreaker.CircuitBreakerConfig;
