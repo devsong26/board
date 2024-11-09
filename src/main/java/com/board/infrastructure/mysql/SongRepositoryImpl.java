@@ -19,6 +19,7 @@ public class SongRepositoryImpl implements SongRepositoryCustom{
     @Override
     public List<DSong> findByTop100Song() {
         return jpaQueryFactory.selectFrom(song)
+                .where(song.isDeleted.eq(false))
                 .orderBy(song.heart.desc())
                 .limit(100)
                 .fetch()
