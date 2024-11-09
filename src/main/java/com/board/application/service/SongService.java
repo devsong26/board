@@ -61,4 +61,9 @@ public class SongService {
         return DSong.from(getSong0(songId));
     }
 
+    @Transactional(rollbackFor = Exception.class)
+    public void listenSong(Long songId) {
+        songRepository.updateListenCntWithPessimisticLock(songId);
+    }
+
 }

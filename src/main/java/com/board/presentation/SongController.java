@@ -46,4 +46,11 @@ public class SongController {
         return SongResponse.from(songService.getSong(songId));
     }
 
+    @PatchMapping(value = "/{songId}/listen")
+    public void listen(final @PathVariable("songId") Long songId) {
+        songService.listenSong(songId);
+    }
+
+
+
 }
