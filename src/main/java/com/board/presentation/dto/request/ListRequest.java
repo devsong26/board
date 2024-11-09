@@ -1,5 +1,6 @@
 package com.board.presentation.dto.request;
 
+import com.board.common.Country;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.lang.NonNull;
@@ -24,6 +25,10 @@ public class ListRequest {
     private LocalDateTime endAt;
 
     private Boolean isDeleted;
+
+    private Boolean isForeign;
+
+    private Country country;
 
     public Long getPage(){
         return page - 1;

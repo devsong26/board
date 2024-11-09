@@ -1,5 +1,7 @@
 package com.board.infrastructure.mysql.entity;
 
+import com.board.common.Country;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Version;
@@ -29,5 +31,10 @@ public class Song {
     private Long version;
 
     private boolean isDeleted;
+
+    private boolean isForeign;
+
+    @Column(columnDefinition = "VARCHAR(32)")
+    private Country country;
 
 }

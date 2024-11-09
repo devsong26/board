@@ -53,6 +53,14 @@ public class SongRepositoryImpl implements SongRepositoryCustom{
             builder.and(song.isDeleted.eq(request.getIsDeleted()));
         }
 
+        if(request.getIsForeign() != null){
+            builder.and(song.isForeign.eq(request.getIsForeign()));
+        }
+
+        if(request.getCountry() != null) {
+            builder.and(song.country.eq(request.getCountry()));
+        }
+
         builder.and(song.regDate.between(request.getStartAt(), request.getEndAt()));
 
         return jpaQueryFactory.selectFrom(song)

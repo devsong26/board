@@ -1,13 +1,12 @@
 package com.board.domain;
 
+import com.board.common.Country;
 import com.board.infrastructure.mysql.entity.Song;
-import com.board.presentation.dto.request.SaveSongRequest;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Stream;
 
 @Getter
 public class DSong {
@@ -22,7 +21,13 @@ public class DSong {
     private final Long listenCnt;
     private final Long heart;
 
-    private DSong(Long songId, String title, String lyrics, LocalDateTime regDate, LocalDateTime updDate, Long listenCnt, Long heart){
+    private final boolean isDeleted;
+    private final boolean isForeign;
+
+    private final Country country;
+
+    private DSong(Long songId, String title, String lyrics, LocalDateTime regDate, LocalDateTime updDate,
+                  Long listenCnt, Long heart, boolean isDeleted, boolean isForeign, Country country){
         this.songId = songId;
         this.title = title;
         this.lyrics = lyrics;
@@ -30,6 +35,9 @@ public class DSong {
         this.updDate = updDate;
         this.listenCnt = listenCnt;
         this.heart = heart;
+        this.isDeleted = isDeleted;
+        this.isForeign = isForeign;
+        this.country = country;
     };
 
     public static DSong from(Song song){
@@ -37,7 +45,7 @@ public class DSong {
 
         return new DSong(song.getId(), song.getTitle(), song.getLyrics(),
                 song.getRegDate(), song.getUpdDate(), song.getListenCnt(),
-                song.getHeart());
+                song.getHeart(), song.isDeleted(), song.isForeign(), song.getCountry());
     }
 
     public static DSong of(String title, String lyrics){
@@ -45,7 +53,7 @@ public class DSong {
 
         final LocalDateTime now = LocalDateTime.now();
 
-        return new DSong(null, title, lyrics, now, now, 0L, 0L);
+        return new DSong(null, title, lyrics, now, now, 0L, 0L, false, false, null);
     }
 
     public static DSong of(Long songId, String title, String lyrics){
@@ -53,7 +61,7 @@ public class DSong {
 
         final LocalDateTime now = LocalDateTime.now();
 
-        return new DSong(songId, title, lyrics, now, now, 0L, 0L);
+        return new DSong(songId, title, lyrics, now, now, 0L, 0L, false, false, null);
     }
 
     public Song toEntity(){
