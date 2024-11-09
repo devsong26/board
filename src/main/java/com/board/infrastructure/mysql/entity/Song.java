@@ -28,4 +28,6 @@ public class Song {
     @Version
     private Long version;
 
+    private boolean isDeleted;
+
 }

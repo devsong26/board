@@ -1,6 +1,7 @@
 package com.board.presentation;
 
 import com.board.application.service.SongService;
+import com.board.presentation.dto.request.DeleteSongRequest;
 import com.board.presentation.dto.request.SaveSongRequest;
 import com.board.presentation.dto.request.UpdateSongRequest;
 import com.board.presentation.dto.response.Top100Response;
@@ -31,6 +32,12 @@ public class SongController {
     public void updateSong(
             final @RequestBody UpdateSongRequest request){
         songService.updateSong(request.toDSong());
+    }
+
+    @DeleteMapping(value = "", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void deleteSong(
+            final @RequestBody DeleteSongRequest request) {
+        songService.deleteSong(request.toDSong());
     }
 
 }
