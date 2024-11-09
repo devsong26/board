@@ -2,6 +2,7 @@ package com.board.infrastructure.mysql.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.Version;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -23,5 +24,8 @@ public class Song {
 
     private Long listenCnt;
     private Long heart;
+
+    @Version
+    private Long version;
 
 }

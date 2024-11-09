@@ -15,9 +15,14 @@ public class SongService {
 
     private final SongRepository songRepository;
 
-    @Transactional
+    @Transactional(readOnly = true)
     public List<DSong> getTop100(){
         return songRepository.findByTop100Song();
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    public void saveSong(DSong dSong) {
+        songRepository.save(dSong.toEntity());
     }
 
 }
