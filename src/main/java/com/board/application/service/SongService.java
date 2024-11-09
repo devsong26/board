@@ -3,6 +3,7 @@ package com.board.application.service;
 import com.board.domain.DSong;
 import com.board.infrastructure.mysql.SongRepository;
 import com.board.infrastructure.mysql.entity.Song;
+import com.board.presentation.dto.request.HeartRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -64,6 +65,17 @@ public class SongService {
     @Transactional(rollbackFor = Exception.class)
     public void listenSong(Long songId) {
         songRepository.updateListenCntWithPessimisticLock(songId);
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    public void toggleHeart(HeartRequest req) {
+        final Song song = getSong0(req.getSongId());
+
+        if(req.isHeart()){
+            song.setHeart(song.getHeart() + 1);
+        } else {
+            song.setHeart(song.getHeart() - 1);
+        }
     }
 
 }

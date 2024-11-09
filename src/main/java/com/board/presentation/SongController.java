@@ -2,6 +2,7 @@ package com.board.presentation;
 
 import com.board.application.service.SongService;
 import com.board.presentation.dto.request.DeleteSongRequest;
+import com.board.presentation.dto.request.HeartRequest;
 import com.board.presentation.dto.request.SaveSongRequest;
 import com.board.presentation.dto.request.UpdateSongRequest;
 import com.board.presentation.dto.response.SongResponse;
@@ -48,9 +49,14 @@ public class SongController {
 
     @PatchMapping(value = "/{songId}/listen")
     public void listen(final @PathVariable("songId") Long songId) {
+        // todo 사용자의 들었던 노래 목록에 있어야 함
         songService.listenSong(songId);
     }
 
-
+    @PatchMapping(value = "/heart", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void heart(final HeartRequest request) {
+        // todo 사용자가 좋아요를 눌렀다면 그 기록이 남아야 함
+        songService.toggleHeart(request);
+    }
 
 }
