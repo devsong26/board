@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -23,6 +24,25 @@ public class SongService {
     @Transactional(rollbackFor = Exception.class)
     public void saveSong(DSong dSong) {
         songRepository.save(dSong.toEntity());
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    public void updateSong(DSong dSong) {
+        final Optional<Song> songOpt = songRepository.findById(dSong.getSongId());
+
+        if(songOpt.isEmpty()){
+            throw new RuntimeException("존재하지 않는 음원 아이디 입니다.");
+        }
+
+        final Song song = songOpt.get();
+
+        if(dSong.getTitle() != null){
+            song.setTitle(dSong.getTitle());
+        }
+
+        if(dSong.getLyrics() != null){
+            song.setLyrics(dSong.getLyrics());
+        }
     }
 
 }

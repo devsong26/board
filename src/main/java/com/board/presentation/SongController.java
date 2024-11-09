@@ -2,6 +2,7 @@ package com.board.presentation;
 
 import com.board.application.service.SongService;
 import com.board.presentation.dto.request.SaveSongRequest;
+import com.board.presentation.dto.request.UpdateSongRequest;
 import com.board.presentation.dto.response.Top100Response;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
@@ -24,6 +25,12 @@ public class SongController {
     @PostMapping(value = "", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void saveSong(@RequestBody SaveSongRequest saveSongRequest){
         songService.saveSong(saveSongRequest.toDSong());
+    }
+
+    @PutMapping(value = "", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void updateSong(
+            final @RequestBody UpdateSongRequest request){
+        songService.updateSong(request.toDSong());
     }
 
 }

@@ -6,13 +6,14 @@ import lombok.Setter;
 
 @Setter
 @Getter
-public class SaveSongRequest {
+public class UpdateSongRequest {
 
+    private Long songId;
     private String title;
-    private String lyrics;
+    private String content;
 
     public DSong toDSong(){
-        return DSong.of(title, lyrics);
+        return DSong.of(songId, title, content);
     }
 
 }

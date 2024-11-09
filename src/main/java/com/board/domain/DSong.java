@@ -5,11 +5,14 @@ import com.board.presentation.dto.request.SaveSongRequest;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
+import java.util.stream.Stream;
 
 @Getter
 public class DSong {
 
+    private final Long songId;
     private final String title;
     private final String lyrics;
 
@@ -19,7 +22,8 @@ public class DSong {
     private final Long listenCnt;
     private final Long heart;
 
-    private DSong(String title, String lyrics, LocalDateTime regDate, LocalDateTime updDate, Long listenCnt, Long heart){
+    private DSong(Long songId, String title, String lyrics, LocalDateTime regDate, LocalDateTime updDate, Long listenCnt, Long heart){
+        this.songId = songId;
         this.title = title;
         this.lyrics = lyrics;
         this.regDate = regDate;
@@ -28,29 +32,28 @@ public class DSong {
         this.heart = heart;
     };
 
-    private DSong(Song song){
-        this.title = song.getTitle();
-        this.lyrics = song.getLyrics();
-
-        this.regDate = song.getRegDate();
-        this.updDate = song.getUpdDate();
-
-        this.listenCnt = song.getListenCnt();
-        this.heart = song.getHeart();
-    }
-
     public static DSong from(Song song){
         Objects.requireNonNull(song);
 
-        return new DSong(song);
+        return new DSong(song.getId(), song.getTitle(), song.getLyrics(),
+                song.getRegDate(), song.getUpdDate(), song.getListenCnt(),
+                song.getHeart());
     }
 
-    public static DSong from(SaveSongRequest req){
-        Objects.requireNonNull(req);
+    public static DSong of(String title, String lyrics){
+        List.of(title, lyrics).forEach(Objects::requireNonNull);
 
         final LocalDateTime now = LocalDateTime.now();
 
-        return new DSong(req.getTitle(), req.getLyrics(), now, now, 0L, 0L);
+        return new DSong(null, title, lyrics, now, now, 0L, 0L);
+    }
+
+    public static DSong of(Long songId, String title, String lyrics){
+        List.of(songId, title, lyrics).forEach(Objects::requireNonNull);
+
+        final LocalDateTime now = LocalDateTime.now();
+
+        return new DSong(songId, title, lyrics, now, now, 0L, 0L);
     }
 
     public Song toEntity(){
