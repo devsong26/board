@@ -4,6 +4,7 @@ import com.board.application.service.SongService;
 import com.board.presentation.dto.request.DeleteSongRequest;
 import com.board.presentation.dto.request.SaveSongRequest;
 import com.board.presentation.dto.request.UpdateSongRequest;
+import com.board.presentation.dto.response.SongResponse;
 import com.board.presentation.dto.response.Top100Response;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
@@ -38,6 +39,11 @@ public class SongController {
     public void deleteSong(
             final @RequestBody DeleteSongRequest request) {
         songService.deleteSong(request.toDSong());
+    }
+
+    @GetMapping(value = "/{songId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public SongResponse getSong(final @PathVariable("songId") Long songId){
+        return SongResponse.from(songService.getSong(songId));
     }
 
 }

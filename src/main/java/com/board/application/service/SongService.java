@@ -28,7 +28,7 @@ public class SongService {
 
     @Transactional(rollbackFor = Exception.class)
     public void updateSong(DSong dSong) {
-        final Song song = getSong(dSong);
+        final Song song = getSong0(dSong.getSongId());
 
         if(dSong.getTitle() != null){
             song.setTitle(dSong.getTitle());
@@ -39,8 +39,8 @@ public class SongService {
         }
     }
 
-    private Song getSong(DSong dSong) {
-        final Optional<Song> songOpt = songRepository.findById(dSong.getSongId());
+    private Song getSong0(Long songId) {
+        final Optional<Song> songOpt = songRepository.findById(songId);
 
         if(songOpt.isEmpty()){
             throw new RuntimeException("존재하지 않는 음원 아이디 입니다.");
@@ -51,9 +51,14 @@ public class SongService {
 
     @Transactional(rollbackFor = Exception.class)
     public void deleteSong(DSong dSong) {
-        final Song song = getSong(dSong);
+        final Song song = getSong0(dSong.getSongId());
 
         song.setDeleted(true);
+    }
+
+    @Transactional(readOnly = true)
+    public DSong getSong(Long songId){
+        return DSong.from(getSong0(songId));
     }
 
 }
