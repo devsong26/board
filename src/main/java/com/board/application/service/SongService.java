@@ -4,6 +4,7 @@ import com.board.domain.DSong;
 import com.board.infrastructure.mysql.SongRepository;
 import com.board.infrastructure.mysql.entity.Song;
 import com.board.presentation.dto.request.HeartRequest;
+import com.board.presentation.dto.request.ListRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -78,4 +79,8 @@ public class SongService {
         }
     }
 
+    @Transactional(readOnly = true)
+    public List<DSong> getList(ListRequest request) {
+        return songRepository.findListByRequest(request);
+    }
 }

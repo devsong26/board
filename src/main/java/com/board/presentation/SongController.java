@@ -1,10 +1,8 @@
 package com.board.presentation;
 
 import com.board.application.service.SongService;
-import com.board.presentation.dto.request.DeleteSongRequest;
-import com.board.presentation.dto.request.HeartRequest;
-import com.board.presentation.dto.request.SaveSongRequest;
-import com.board.presentation.dto.request.UpdateSongRequest;
+import com.board.presentation.dto.request.*;
+import com.board.presentation.dto.response.ListResponse;
 import com.board.presentation.dto.response.SongResponse;
 import com.board.presentation.dto.response.Top100Response;
 import lombok.RequiredArgsConstructor;
@@ -57,6 +55,11 @@ public class SongController {
     public void heart(final HeartRequest request) {
         // todo 사용자가 좋아요를 눌렀다면 그 기록이 남아야 함
         songService.toggleHeart(request);
+    }
+
+    @GetMapping(value = "/list", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ListResponse getList(final ListRequest request){
+        return ListResponse.from(songService.getList(request));
     }
 
 }
