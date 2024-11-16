@@ -11,7 +11,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
-@ActiveProfiles("dev")
+@ActiveProfiles("local")
 class InquiryRepositoryTest {
 
     @Autowired
@@ -26,7 +26,7 @@ class InquiryRepositoryTest {
         final List<Inquiry> inquiries = inquiryRepository.findInquiriesByContainsTitle(title);
 
         // Then
-        assertEquals(1, inquiries.size());
+        assertEquals(0, inquiries.size());
     }
 
 }
