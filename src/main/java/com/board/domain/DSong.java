@@ -1,6 +1,6 @@
 package com.board.domain;
 
-import com.board.common.Country;
+import com.board.common.enums.Country;
 import com.board.infrastructure.mysql.entity.Song;
 import lombok.Getter;
 

@@ -1,17 +1,13 @@
 package com.board.infrastructure.mysql.entity;
 
-import com.board.common.Country;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Version;
-import lombok.Getter;
-import lombok.Setter;
+import com.board.common.enums.Country;
+import jakarta.persistence.*;
+import lombok.Data;
 
 import java.time.LocalDateTime;
 
-@Setter
-@Getter
+@Cacheable
+@Data
 @Entity
 public class Song {
 

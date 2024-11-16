@@ -1,6 +1,6 @@
 package com.board.presentation.dto.request;
 
-import com.board.common.Country;
+import com.board.common.enums.Country;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.lang.NonNull;

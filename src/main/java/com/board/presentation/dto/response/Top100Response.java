@@ -1,6 +1,6 @@
 package com.board.presentation.dto.response;
 
-import com.board.common.SongException;
+import com.board.common.exception.SongException;
 import com.board.domain.DSong;
 import lombok.Getter;
 import org.springframework.util.CollectionUtils;
