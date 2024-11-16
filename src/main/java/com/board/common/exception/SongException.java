@@ -1,4 +1,4 @@
-package com.board.common;
+package com.board.common.exception;
 
 public class SongException extends RuntimeException{
 
