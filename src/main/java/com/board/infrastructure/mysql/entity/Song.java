@@ -6,12 +6,12 @@ import lombok.Data;
 
 import java.time.LocalDateTime;
 
-@Cacheable
 @Data
 @Entity
 public class Song {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String title;
@@ -30,6 +30,7 @@ public class Song {
 
     private boolean isForeign;
 
+    @Enumerated(EnumType.STRING)
     @Column(columnDefinition = "VARCHAR(32)")
     private Country country;
 

@@ -6,6 +6,7 @@ import com.board.infrastructure.mysql.entity.Song;
 import com.board.presentation.dto.request.HeartRequest;
 import com.board.presentation.dto.request.ListRequest;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,6 +20,7 @@ public class SongService {
     private final SongRepository songRepository;
 
     @Transactional(readOnly = true)
+    @Cacheable(value = "getTop100")
     public List<DSong> getTop100(){
         return songRepository.findByTop100Song();
     }
